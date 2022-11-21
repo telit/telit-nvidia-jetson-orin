@@ -90,7 +90,10 @@ function build_arm64_kernel_sources {
 		CROSS_COMPILE="${CROSS_COMPILE_AARCH64}" \
 		"${O_OPT[@]}" "${config_file}"
 
-	"${MAKE_BIN}" -C "${source_dir}" menuconfig ARCH=arm64 "${O_OPT[@]}"
+	"${MAKE_BIN}" -C "${source_dir}" ARCH=arm64 \
+		LOCALVERSION="-tegra" \
+		CROSS_COMPILE="${CROSS_COMPILE_AARCH64}" \
+		"${O_OPT[@]}" menuconfig
 
 	"${MAKE_BIN}" -C "${source_dir}" ARCH=arm64 \
 		LOCALVERSION="-tegra" \
